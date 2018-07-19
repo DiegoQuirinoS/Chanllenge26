@@ -26,7 +26,6 @@ public class TransactionTest {
         assertTrue(transaction.isElapsedMoreSecondsThan(60l, Instant.now().toEpochMilli()));
     }
 
-
     @Test(expected = IllegalArgumentException.class)
     public void shouldThrowExceptionWithTimeStampZero() throws InterruptedException {
         Transaction transaction = new Transaction(random.nextDouble(), 0);
