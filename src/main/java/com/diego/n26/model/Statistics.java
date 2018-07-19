@@ -24,7 +24,6 @@ public class Statistics {
         this.transactions = transactions;
     }
 
-    public static final long TIME_SECONDS_QUERY_TRANSACTIONS = 60;
     private long timeStamp;
     private List<Transaction> transactions;
     private double sum = 0.0;
@@ -85,7 +84,7 @@ public class Statistics {
         }
 
         List<Transaction> validateTransactions = this.transactions.stream()
-                .filter(transaction -> transaction.isElapsedMoreSecondsThan(TIME_SECONDS_QUERY_TRANSACTIONS, this.timeStamp))
+                .filter(transaction -> transaction.isElapsedMoreSecondsThan(Parameter.TIME_SECONDS_QUERY_TRANSACTIONS.value(), this.timeStamp))
                 .collect(Collectors.toList());
 
         return (Statistics) calculate.calculate(this, validateTransactions);

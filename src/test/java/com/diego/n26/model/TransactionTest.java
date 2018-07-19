@@ -16,14 +16,14 @@ public class TransactionTest {
     public void isElapsedMoreThanSixtySeconds() throws InterruptedException {
         Transaction transaction = new Transaction(random.nextDouble(), Instant.now().toEpochMilli());
         Thread.sleep(70000l);
-        assertFalse(transaction.isElapsedMoreSecondsThan(60l, Instant.now().toEpochMilli()));
+        assertFalse(transaction.isElapsedMoreSecondsThan(Parameter.TIME_SECONDS_QUERY_TRANSACTIONS.value(), Instant.now().toEpochMilli()));
     }
 
     @Test
     public void isElapsedEqualSixtySeconds() throws InterruptedException {
         Transaction transaction = new Transaction(random.nextDouble(), Instant.now().toEpochMilli());
         Thread.sleep(60000l);
-        assertTrue(transaction.isElapsedMoreSecondsThan(60l, Instant.now().toEpochMilli()));
+        assertTrue(transaction.isElapsedMoreSecondsThan(Parameter.TIME_SECONDS_QUERY_TRANSACTIONS.value(), Instant.now().toEpochMilli()));
     }
 
     @Test(expected = IllegalArgumentException.class)

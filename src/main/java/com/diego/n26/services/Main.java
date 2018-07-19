@@ -1,6 +1,7 @@
 package com.diego.n26.services;
 
 import com.diego.n26.model.Calculate;
+import com.diego.n26.model.Parameter;
 import com.diego.n26.model.Statistics;
 import com.diego.n26.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class Main {
     @PostMapping(name = "/transactions")
     public void transactions(HttpServletResponse response, @RequestBody Transaction transaction){
         transactions.add(transaction);
-        if(transaction.isElapsedMoreSecondsThan(Statistics.TIME_SECONDS_QUERY_TRANSACTIONS, Instant.now().toEpochMilli())){
+        if(transaction.isElapsedMoreSecondsThan(Parameter.TIME_SECONDS_QUERY_TRANSACTIONS.value(), Instant.now().toEpochMilli())){
             response.setStatus(HttpServletResponse.SC_CREATED);
         }else{
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);
