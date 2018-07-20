@@ -6,6 +6,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class CustomOperations extends Operations<Transaction> {
@@ -30,5 +31,26 @@ public class CustomOperations extends Operations<Transaction> {
     @Override
     public List<Transaction> getOperations() {
         return  Collections.unmodifiableList(transactions);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomOperations that = (CustomOperations) o;
+        return Objects.equals(transactions, that.transactions);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(transactions);
+    }
+
+    @Override
+    public String toString() {
+        return "CustomOperations{" +
+                "transactions=" + transactions +
+                '}';
     }
 }

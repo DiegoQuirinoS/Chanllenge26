@@ -34,8 +34,8 @@ public class Main {
 
     @GetMapping(name = "/statistics")
     public Statistics statistics(){
-        Statistics statistics = new Statistics(Instant.now().toEpochMilli(), operations.getOperations());
-        Statistics statiticsFrom = statistics.getStatiticsFrom(calculate);
+        Statistics statistics = new Statistics(Instant.now().toEpochMilli(), operations);
+        Statistics statiticsFrom = statistics.getStatisticsFrom(calculate);
         return statiticsFrom;
     }
 }

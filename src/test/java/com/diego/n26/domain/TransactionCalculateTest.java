@@ -15,7 +15,7 @@ public class TransactionCalculateTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldThrowExceptionWithTransactionsListNull(){
-        Statistics statistics = new Statistics(1, new ArrayList<>());
+        Statistics statistics = new Statistics(1, new CustomOperations());
         calculate.calculate(null, null);
     }
 }

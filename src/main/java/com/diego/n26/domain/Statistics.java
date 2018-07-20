@@ -11,21 +11,21 @@ import java.util.stream.Collectors;
 public class Statistics {
 
     @JsonCreator
-    public Statistics(@JsonProperty("timeStamp")long timeStamp, @JsonProperty("transactions") List<Transaction> transactions){
+    public Statistics(@JsonProperty("timeStamp")long timeStamp, @JsonProperty("operations") Operations operations){
         if(timeStamp <= 0){
             throw new IllegalArgumentException("The parameter timeStamp cannot be zero or negative!");
         }
 
-        if(transactions == null) {
-            throw new IllegalArgumentException("The parameter transactions cannot be null!");
+        if(operations == null) {
+            throw new IllegalArgumentException("The parameter operations cannot be null!");
         }
 
         this.timeStamp = timeStamp;
-        this.transactions = transactions;
+        this.operations = operations;
     }
 
     private long timeStamp;
-    private List<Transaction> transactions;
+    private Operations operations;
     private double sum = 0.0;
     private double avg = 0.0;
     private double max = 0.0;
@@ -77,13 +77,15 @@ public class Statistics {
     }
 
     @JsonIgnore
-    public Statistics getStatiticsFrom(Calculate calculate) throws IllegalArgumentException{
+    public Statistics getStatisticsFrom(Calculate calculate) throws IllegalArgumentException{
+
+        List<Transaction> transactions = this.operations.getOperations();
 
         if(calculate == null) {
             throw new IllegalArgumentException("The parameter cannot be null");
         }
 
-        List<Transaction> validateTransactions = this.transactions.stream()
+        List<Transaction> validateTransactions = transactions.stream()
                 .filter(transaction -> transaction.isElapsedMoreSecondsThan(Parameter.TIME_SECONDS_QUERY_TRANSACTIONS.value(), this.timeStamp))
                 .collect(Collectors.toList());
 
@@ -114,7 +116,7 @@ public class Statistics {
     public String toString() {
         return "Statistics{" +
                 "timeStamp=" + timeStamp +
-                ", transactions=" + transactions +
+                ", operations=" + operations +
                 ", sum=" + sum +
                 ", avg=" + avg +
                 ", max=" + max +
