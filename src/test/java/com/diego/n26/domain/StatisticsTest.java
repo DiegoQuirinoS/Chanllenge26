@@ -1,11 +1,10 @@
-package com.diego.n26.model;
+package com.diego.n26.domain;
 
 import org.junit.Test;
 
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 

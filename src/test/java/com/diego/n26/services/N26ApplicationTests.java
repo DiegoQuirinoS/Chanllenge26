@@ -1,6 +1,6 @@
-package com.diego.n26;
+package com.diego.n26.services;
 
-import com.diego.n26.model.Transaction;
+import com.diego.n26.domain.Transaction;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

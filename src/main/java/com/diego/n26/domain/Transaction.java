@@ -1,4 +1,4 @@
-package com.diego.n26.model;
+package com.diego.n26.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

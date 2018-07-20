@@ -1,4 +1,4 @@
-package com.diego.n26.model;
+package com.diego.n26.domain;
 
 public enum Parameter {
 
